@@ -1,0 +1,12 @@
+body,a,table,div,span,td,th,input,select{font-size:9pt;font-family:"ËÎÌו,Verdana,Arial";Color:#000000;}
+body {
+	background-color:#FFFFFF;SCROLLBAR-BASE-COLOR:#D0D0C8;
+	line-height: 22px;
+}
+body, p, div, a { font-size: 12px;}
+p { text-indent: 2em; margin: 0px;}
+a { color: #000;}
+a:hover { color: #f00;}
+table { border-collapse:collapse; }
+table td { line-height: 22px; }
+table td p { text-indent: 0;}

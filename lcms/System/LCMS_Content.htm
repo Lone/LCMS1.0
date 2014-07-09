@@ -1,0 +1,60 @@
+<html>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="EditPlus">
+<meta name="AUTHOR" content="Lone Chain">
+<title>Lone Content Management System</title>
+<link rel="stylesheet" href="../public/css/admin.css" type="text/css">
+<script language="javascript">
+	function MenuDelete(){
+		if (!confirm("确定要删除这个目录吗？"))return false;
+		var url = "LCMS_MenuDelete.asp?Menu_Id=" + window.top.document.selected_menu_id;
+		
+		location.href=url;
+	}
+	function MenuCreate(){
+		var url = "dialog.htm?PubSetting:1";
+		var arr = showModalDialog(url,window,"dialogWidth:450px;dialogHeight:250px;help:no;scroll:no;status:no");
+		if (arr) {
+			//dEL.value=arr;
+			//sEL.style.backgroundColor=arr;
+		}
+	}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onselectstart="return false;">
+<table id=control width="100%" border="0" cellspacing="0" cellpadding="0" class="borderon">
+<tr>
+<td height="20" width="80"><img src="../public/images/manage/icon-default.gif" width="16" height="15" class="button" onClick="javascript:window.parent.testframeset.cols = '200,*';" vspace="2" hspace="1" alt="恢复左栏默认宽度"></td>
+<td width="70" align="center" class="button" onClick="location.href='LCMS_ContentAdd.htm';">新建发布</td>
+<td width="70" align="center" class="button" onClick="location.href='LCMS_MenuAdd.htm';">新建子目录</td>
+<td width="70" align="center" class="button" onClick="location.href='LCMS_MenuEdit.htm';">修改目录</td>
+<td width="80" align="center" class="button" onClick="MenuDelete();">删除目录</td>
+<td width="80" align="center" class="button" onClick="MenuCreate();">生成页面</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<table id=control width="100%" style="height:expression(document.body.offsetHeight-25)" border="0" cellspacing="0" cellpadding="3" class="borderon">
+<tr>
+<td align="center" valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+<tr>
+<td valign="top">
+<script language="javascript">
+	var Id = window.top.document.selected_menu_id;
+	if (!Id || Id==0) {
+		alert('参数丢失');
+	}else{
+		var frm = '<iframe name="iframemain" width="100%" height="100%" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0" src="LCMS_Content.asp?Menu_Id=' + Id + '"></iframe>'
+		document.write(frm);
+	}
+</script>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+<TITLE>插入单选钮</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+body, a, table, div, span, td, th, input, select{font:9pt;font-family: "宋体", Verdana, Arial, Helvetica, sans-serif;}
+body {padding:5px}
+</style>
+
+<script language="JavaScript" src="dialog.js"></script>
+
+<script language="JavaScript">
+
+// 点确定时执行
+function ok(){
+	var v_name = d_name.value;
+	var v_value = d_value.value;
+	if (v_name=="")
+	{
+	v_name = "radiobutton"
+	}
+	var checkstatus = d_checked.checked;
+	dialogArguments.format('InsertInputRadio',"eWebEditor_TempElement_Radio");
+	var oTempElement = dialogArguments.eWebEditor.document.getElementById("eWebEditor_TempElement_Radio");
+	oTempElement.setAttribute("name",v_name);
+	oTempElement.setAttribute("value",v_value);
+	if (checkstatus)
+	{
+		oTempElement.setAttribute("checked","true");
+	}
+	oTempElement.removeAttribute("id");
+	window.returnValue = null;
+	window.close();
+}
+
+
+// 取文件名到隐藏的输入框
+function GetFileName(url, opt){
+	d_filename.value=url.substr(url.lastIndexOf(opt)+1);
+}
+
+</script>
+
+
+<BODY bgColor=menu>
+
+<table border=0 cellpadding=0 cellspacing=0 align=center>
+<tr>
+	<td>
+	<fieldset>
+	<legend>单选钮属性</legend>
+	<table border=0 cellpadding=0 cellspacing=0>
+	<tr><td colspan=9 height=5></td></tr>
+	<tr>
+		<td width=7></td>
+		<td width=54 align=right>
+		名称:</td>
+		<td width=5></td>
+		<td colspan=5><input type=text id="d_name" style="width:243px" size=30 value="radiobutton1"></td>
+		<td width=7></td>
+	</tr>
+	<tr><td colspan=9 height=5></td></tr>
+	<tr>
+		<td width=7></td>
+		<td width=54 align="right">状态:</td>
+		<td width=5></td>
+		<td colspan=5>
+		<input type=radio id="d_checked" name="checkradio" value="1" />已选中
+		<input type=radio id="d_unchecked" name="checkradio" value="1" checked />未选中		
+		</td>
+		<td width=7></td>
+	</tr>
+	<tr><td colspan=9 height=5></td></tr>
+	<tr>
+		<td width=7></td>
+		<td width=54 align="right">选中值:</td>
+		<td width=5></td>
+		<td colspan=5>
+		<input type=text id="d_value" style="width:243px" size=30 value="">
+		</td>
+		<td width=7></td>
+	</tr>
+	<tr><td colspan=9 height=5></td></tr>
+	</table>
+	</fieldset>
+	</td>
+</tr>
+<tr><td height=5></td></tr>
+<tr><td align=right><input type=submit value='  确定  ' id=Ok onclick="ok()">&nbsp;&nbsp;<input type=button value='  取消  ' onclick="window.close();"></td></tr>
+</table>
+</body>
+</html>

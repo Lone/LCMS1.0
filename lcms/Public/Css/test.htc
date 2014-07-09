@@ -1,0 +1,43 @@
+<attach event="onmouseover" onevent="over()"/>
+<attach event="onmouseout" onevent="out()"/>
+<attach event="onmousedown" onevent="down()"/>
+<attach event="onmouseup" onevent="up()"/>
+<script language="Javascript">
+function over(){
+	style.borderRight='1px solid #808080';
+	style.borderBottom='1px solid #808080';
+	style.borderLeft='1px solid #FFFFFF';
+	style.borderTop='1px solid #FFFFFF';
+}
+
+function out(){
+	style.borderLeft='1px solid #D4D0C8';
+	style.borderTop='1px solid #D4D0C8';
+	style.borderRight='1px solid #D4D0C8';
+	style.borderBottom='1px solid #D4D0C8';
+	style.position='relative';
+	style.left='0px';
+	style.top='0px';
+}
+
+function down(){
+	style.position='relative';
+	style.left='1px';
+	style.top='1px';
+	style.borderLeft='1px solid #808080';
+	style.borderTop='1px solid #808080';
+	style.borderRight='1px solid #FFFFFF';
+	style.borderBottom='1px solid #FFFFFF';
+}
+
+function up(){
+	style.position='relative';
+	style.left='0px';
+	style.top='0px';
+	style.borderRight='1px solid #808080';
+	style.borderBottom='1px solid #808080';
+	style.borderLeft='1px solid #FFFFFF';
+	style.borderTop='1px solid #FFFFFF';
+}
+</script>
+ 

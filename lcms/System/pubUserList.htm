@@ -1,0 +1,89 @@
+<!--#include file="../inc/common.asp"-->
+<html>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="GENERATOR" content="EditPlus" />
+<meta name="AUTHOR" content="Lone Chain" />
+<title>Lone Content Management System</title>
+<link rel="stylesheet" href="../public/css/admin.css" type="text/css" />
+<script language="javascript" src="../public/js/admin.js"></script>
+<script language="javascript" src="/public/js/t.js"></script>
+<script language="javascript">
+var nowTypeName = '';
+var AllTypes = new Array();
+var menuid = location.search.substr(1);
+var pubedid = 0;
+
+function StartPub(){
+	AllTypes = getAllTypes();
+	$("Start").disabled = true;
+	$("Descritpion").innerHTML = "正在获取数据...";
+	var url= "CreateUserList.asp?UserType=" + menuid;
+
+	nowTypeName = AllTypes[pubedid];
+	pubedid ++;
+	url += "&i="+pubedid;	
+	url += "&typename="+escape(nowTypeName);
+	frames["pubFrame"].location.href = url;
+	//window.open(url);
+
+}
+
+function getAllTypes(){
+	var ats = new Array();
+	for (var i in Types.job){
+		for (var j in Types.job[i])
+		ats.push(Types.job[i][j]);
+	}
+	return ats;
+}
+
+function CancelPub(){
+	if ($("Start").disabled)
+		if (!confirm("操作还未完成，确定要结束操作吗？"))
+			return false;
+	window.close();
+}
+
+function Reload(){
+	if (pubedid) {
+		$('bar').style.backgroundColor = '#ffff00';
+		$('bar').style.width = parseInt(pubedid/AllTypes.length) + '%';
+	}
+	var url= "CreateUserList.asp?UserType=" + menuid;
+	
+	nowTypeName = AllTypes[pubedid];
+	pubedid ++;
+	url += "&i="+pubedid;		
+	url += "&typename="+escape(nowTypeName);
+	$("Descritpion").innerHTML = "正在生成：" + nowTypeName;
+	if (pubedid <= AllTypes.length)
+		frames["pubFrame"].location.href = url;
+	else
+		window.close();
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" scroll="no" text="#000000" onLoad="StartPub();">
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0" class="borderon">
+<tr>
+<td align="left" valign="top" width="100%" height="100%">
+<div id="Descritpion" style="padding: 12px; width:100%; overflow: hidden;">
+
+</div>
+<div style="padding: 12px; width:100%; overflow: hidden;">
+	<div id="bar" style="height: 20px; width:1px;">
+	<iframe src="" name="pubFrame" frameborder="0" border="0" scrolling="no" style="width:0%; height:0px;background-color:menu;"></iframe>
+	</div>
+</div>
+<p align="center">
+	<input type="button" name="Start" id="Start" value="开始发布" onClick="StartPub();"  />
+	<input type="button" name="Cancel" value=" 取 消 " onClick="CancelPub();" />
+</p>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

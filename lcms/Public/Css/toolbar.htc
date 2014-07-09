@@ -1,0 +1,102 @@
+<attach event="onmousedown" onevent="initdrag()"/>
+<attach event="onmouseup" onevent="enddrag()"/>
+<attach event="onmousemove" onevent="startdrag()"/>
+<script>
+var barx0;
+var bary0;
+var barw0=50;
+var barh0=200;
+var barsize=28;
+var dragenable=0;
+var barx1=100;
+var bary1=100;
+function initdrag() {
+dragenable=1;
+barx0=event.clientX+window.document.body.scrollLeft-element.offsetLeft;
+bary0=event.clientY+window.document.body.scrollTop-element.offsetTop;
+element.setCapture();
+}
+
+function startdrag() {
+if (dragenable==1) {
+var tempx=event.clientX+window.document.body.scrollLeft-barx0;
+var tempy=event.clientY+window.document.body.scrollTop-bary0;
+	if (event.clientX<40) {
+		element.style.pixelLeft=window.document.body.scrollLeft;
+		if (event.clientY<40) {
+			element.style.pixelTop=window.document.body.scrollTop;
+			element.style.width=window.document.body.clientWidth;
+			element.style.height=barsize;
+			window.document.body.style.marginTop=barsize;
+			}
+		else if (event.clientY>(window.document.body.clientHeight-40)) {
+			element.style.pixelTop=window.document.body.clientHeight-barsize+window.document.body.scrollTop;
+			element.style.width=window.document.body.clientWidth;
+			element.style.height=barsize;
+			window.document.body.style.marginBottom=barsize;
+			}
+		else {
+			element.style.pixelTop=window.document.body.scrollTop;
+			element.style.pixelWidth=barsize;
+			element.style.pixelHeight=window.document.body.clientHeight;
+			window.document.body.style.marginLeft=barsize;
+			}
+		}
+	else if (event.clientX>(window.document.body.clientWidth-40)) {
+		if (event.clientY<40) {
+			element.style.pixelLeft=window.document.body.scrollLeft;
+			element.style.pixelTop=window.document.body.scrollTop;
+			element.style.width=window.document.body.clientWidth;
+			element.style.height=barsize;
+			window.document.body.style.marginTop=barsize;
+			}
+		else if (event.clientY>(window.document.body.clientHeight-40)) {
+			element.style.pixelLeft=window.document.body.scrollLeft;
+			element.style.pixelTop=window.document.body.clientHeight-barsize+window.document.body.scrollTop;
+			element.style.width=window.document.body.clientWidth;
+			element.style.height=barsize;
+			window.document.body.style.marginBottom=barsize;
+			}
+		else {
+			element.style.pixelLeft=window.document.body.clientWidth-barsize+window.document.body.scrollLeft;
+			element.style.pixelTop=window.document.body.scrollTop;
+			element.style.width=barsize;
+			element.style.height=window.document.body.clientHeight;
+			window.document.body.style.marginRight=barsize;
+			}
+		}
+	else {
+		if (event.clientY<40) {
+			element.style.pixelLeft=window.document.body.scrollLeft;
+			element.style.pixelTop=window.document.body.scrollTop;
+			element.style.width=window.document.body.clientWidth;
+			element.style.height=barsize;
+			window.document.body.style.marginTop=barsize;
+			}
+		else if (event.clientY>(window.document.body.clientHeight-40)) {
+			element.style.pixelLeft=window.document.body.scrollLeft;
+			element.style.pixelTop=window.document.body.clientHeight-barsize+window.document.body.scrollTop;
+			element.style.width=window.document.body.clientWidth;
+			element.style.height=barsize;
+			window.document.body.style.marginBottom=barsize;
+			}
+		else {
+			element.style.pixelLeft=(barx0>barw0?(tempx+barx0-5):tempx);
+			element.style.pixelTop=(bary0>barh0?(tempy+bary0-5):tempy);
+			element.style.width=barw0;
+			element.style.height=barh0;
+			window.document.body.style.margin=0;
+			}
+		}
+	}
+barx1=element.style.pixelLeft-window.document.body.scrollLeft;
+bary1=element.style.pixelTop-window.document.body.scrollTop;
+}
+
+function enddrag() {
+dragenable=0;
+element.releaseCapture();
+}
+
+window.onscroll=new Function("element.style.pixelLeft=barx1+window.document.body.scrollLeft;element.style.pixelTop=bary1+window.document.body.scrollTop;");
+</script>

@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>文件上传</title>
+<script language="JavaScript" src="../Editor/dialog/dialog.js"></script>
+<style type="text/css">
+	body {background-color:menu; margin:5px;font-size:12px;}
+	p { margin:0px; padding:0px;}
+	fieldset { 
+		padding-left: 12px;
+		padding-right: 12px;
+		padding-top: 12px;
+		padding-bottom: 12px;
+		margin-bottom:12px;
+	}
+	td {font-size:12px;}
+	marquee { color: #FFFFFF; font-family: "Arial";}
+</style>
+</head>
+<BODY>
+<div id="divProcessing" style="width:200px;height:30px;position:absolute;left:140px;top:30px;display:none;">
+	<table border=0 cellpadding=0 cellspacing=1 bgcolor="#000000" width="100%" height="100%">
+		<tr>
+			<td bgcolor="#3A6EA5">
+				<marquee align="middle" behavior="alternate" scrollamount="5">
+					...Loading...Wait Please...
+				</marquee>
+			</td>
+		</tr>
+	</table>
+</div>
+<fieldset>
+	<legend>图片来源</legend>
+	<p align="center">	
+		<Script Language=JavaScript>
+			document.write('<iframe id=d_file frameborder=0 src="../Editor/upload.asp?type=image&style=standard" width="100%" height="22" scrolling=no></iframe>');
+		</Script>
+	</p>
+</fieldset>
+<p align="right">
+	<input type="submit" name="Submit" value="确定" id="Ok" onclick="ok();" />
+	<input type="button" name="Cancel" value="取消" id="Cancel" onclick="Cancel();" />	
+</p>
+</body>
+</html>
+<script language="JavaScript">
+<!--
+function ok(){
+	var sCheckFlag = "file";
+	if (!d_file.CheckUploadForm()) return false;
+	// 使各输入框无效
+	DisableItems();
+	// 显示正在上传图片
+	divProcessing.style.display="";
+	// 上传表单提交
+	d_file.myform.submit();
+}
+function DisableItems(){
+	Ok.disabled=true;
+	Cancel.disabled=true;
+}
+function UploadSaved(sPathFileName){
+	window.returnValue = sPathFileName;
+	window.close();
+}
+function Cancel(){
+	window.returnValue = null;
+	window.close();
+}
+function UploadLoaded(){
+	// 初始radio
+	//RadioClick(sCheckFlag);
+}
+
+// 上传错误
+function UploadError(sErrDesc){
+	AbleItems();
+	//RadioClick('file');
+	divProcessing.style.display="none";
+	try {
+		BaseAlert(d_file.myform.uploadfile,sErrDesc);
+	}
+	catch(e){}
+}
+function AbleItems(){
+	Ok.disabled=false;
+	Cancel.disabled=false;
+}
+//-->
+</script>

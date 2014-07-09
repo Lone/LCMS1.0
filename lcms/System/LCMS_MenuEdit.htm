@@ -1,0 +1,51 @@
+<html>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="EditPlus">
+<meta name="AUTHOR" content="Lone Chain">
+<title>Lone Content Management System</title>
+<link rel="stylesheet" href="../public/css/admin.css" type="text/css">
+<script language="javascript">
+	function ContentPub(){
+		var form = frames["iframemain"].form1.submit();
+	}
+	function ContentPub1(){
+		var url = "dialog.htm?SelectMenu.asp";
+		var arr = showModalDialog(url,window,"dialogWidth:450px;dialogHeight:250px;help:no;scroll:no;status:no");
+		if (arr && arr!='') {
+			if(arr!='0')
+				window.frames["iframemain"].form1.Menu_Parent_Id.value = arr;
+			frames["iframemain"].form1.action = 'LCMS_MenuAdd_Save.asp';
+			ContentPub();
+		}
+	}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onselectstart="return false;">
+<table id=control width="100%" border="0" cellspacing="0" cellpadding="0" class="borderon">
+<tr>
+<td height="20" width="80"><img src="../public/images/manage/icon-default.gif" width="16" height="15" class="button" onClick="javascript:window.parent.testframeset.cols = '200,*';" vspace="2" hspace="1" alt="恢复左栏默认宽度"></td>
+<td width="50" align="center" class="button" onClick="ContentPub();"><img border="0" src="../public/images/Manage/Icon_File_Save.gif" align="absmiddle"> 保存</td>
+<td width="60" align="center" class="button" onClick="ContentPub1();"><img border="0" src="../public/images/Manage/Icon_File_Save.gif" align="absmiddle"> 另存为</td>
+<td width="60" align="center" class="button" onClick="location.href='LCMS_Content.htm';"><img border="0" src="../public/images/Manage/Icon_Up.gif" align="absmiddle"> 返回</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<table id=control width="100%" style="height:expression(document.body.offsetHeight-25)" border="0" cellspacing="0" cellpadding="3" class="borderon">
+<tr>
+<td align="center" valign="top" width="100%" height="100%">
+<script language="javascript">
+	var Id = window.top.document.selected_menu_id;
+	if (!Id || Id==0) {
+		alert('参数丢失');
+	}else{
+		var frm = '<iframe name="iframemain" width="100%" height="100%" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0" src="LCMS_MenuEdit.asp?Menu_Id=' + Id + '"></iframe>'
+		document.write(frm);
+	}
+</script>
+</td>
+</tr>
+</table>
+</body>
+</html>
